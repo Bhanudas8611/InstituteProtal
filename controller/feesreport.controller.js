@@ -6,7 +6,7 @@ let locationwisestudentdeatils = (req, res) => {
   db.factmodel
     .findAndCountAll({
       include: [
-        { model: db.locationmodel, attributes: ["loc_name", "loc_state"] },
+        { model: db.locationmodel, attributes: ["loc_id","loc_name", "loc_state"] },
         {
           model: db.studentmodel,
           attributes: ["stud_fname", "stud_lname", "stud_email"],
@@ -28,8 +28,8 @@ let locationAndCourseWiseStudentDetails = (req, res) => {
   db.factmodel
     .findAndCountAll({
       include: [
-        { model: db.locationmodel, attributes: ["loc_name", "loc_state"] },
-        { model: db.coursemodel, attributes: ["course_name"] },
+        { model: db.locationmodel, attributes: ["loc_id","loc_name", "loc_state"] },
+        { model: db.coursemodel, attributes: ["course_id","course_name"] },
         {
           model: db.studentmodel,
           attributes: ["stud_fname", "stud_lname", "stud_email"],
@@ -54,7 +54,7 @@ let courseWiseStudentDetailsFromAllLocation = (req, res) => {
     .findAndCountAll({
       include: [
         { model: db.locationmodel, attributes: ["loc_name", "loc_state"] },
-        { model: db.coursemodel, attributes: ["course_name"] },
+        { model: db.coursemodel, attributes: ["course_id","course_name"] },
         {
           model: db.studentmodel,
           attributes: ["stud_fname", "stud_lname", "stud_email"],
@@ -74,7 +74,7 @@ let courseWiseStudentDetailsFromAllLocation = (req, res) => {
 //Find locationwise fees details
 let findfeeslocationwise = (req, res) => {
   db.factmodel
-    .findAll({
+    .findAll({  
       include: [
         { model: db.locationmodel, attributes: ["loc_name", "loc_state"] },
       ],
