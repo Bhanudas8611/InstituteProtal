@@ -33,6 +33,7 @@ let createuser = async (req, res) => {
 
 //Generate token
 let login = async (req, res) => {
+
   db.loginmodel
     .findAll({ where: { user_email: req.body.user_email } })
     .then(async (result) => {
@@ -40,6 +41,7 @@ let login = async (req, res) => {
         req.body.user_password,
         result[0].user_password
       );
+  
       if (issame) {
         let token = jwt.sign(
           { user_id: result[0].User_id, user_name: result[0].user_name },
